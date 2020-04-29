@@ -1,3 +1,5 @@
+import sys
+
 def fib(n):
     """
     Calculates the value of the nth fibonnaci number.
@@ -24,6 +26,12 @@ def fib(n):
     55
 
     """
+    if sys.version_info.major == 3:
+        print('Python3')
+
+    if sys.version_info.major == 2:
+        print('Python2')
+
     a, b = 0, 1
     fib_number = 1
     if n < 2:
