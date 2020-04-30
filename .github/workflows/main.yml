@@ -36,3 +36,21 @@ jobs:
         uses: "codecov/codecov-action@v1"
         with:
           fail_ci_if_error: true
+
+  build-and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        python-version: "docs"
+
+    - name: Build and Deploy
+      run: |
+        python -VV
+        python -m site
+        python -m pip install --upgrade pip setuptools wheel
+        python -m pip install --upgrade codecov virtualenv tox tox-gh-actions
+
+    - name: "Run tox targets for docs"
+        run: "python -m tox"
