@@ -39,13 +39,17 @@ jobs:
 
   docs:
     runs-on: ubuntu-latest
+
+    stratergy:
+      matrix:
+        python-version: "3.7"
+	env:
+	  - TOXENV: docs
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v1
       with:
-        python-version: "3.7"
-        env:
-        - TOXENV: docs
+        python-version: ${{ matrix.python-version}}
     - name: Build and Deploy
       run: |
         python -VV
@@ -54,6 +58,7 @@ jobs:
         python -m pip install --upgrade codecov virtualenv tox tox-gh-actions
 
     - name: "Run tox targets for docs"
+      env: ${{ matrix.env }}
       run: "python -m tox"
 
     - name: Deploy
