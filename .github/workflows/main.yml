@@ -37,7 +37,7 @@ jobs:
         with:
           fail_ci_if_error: true
 
-  build-and_deploy:
+  docs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -54,3 +54,12 @@ jobs:
 
     - name: "Run tox targets for docs"
       run: "python -m tox"
+
+    - name: Deploy
+      uses: crazy-max/ghaction-github-pages@v1
+      with:
+        keep_history: true
+        target_branch: gh-pages
+	build_dir: docs/_build/html/
+      env:
+        GITHUB_PAT: ${{ secrets.deploy_docs }}
