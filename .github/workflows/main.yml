@@ -68,7 +68,7 @@ jobs:
         target_branch: gh-pages
         build_dir: docs/_build/html/
       env:
-        GITHUB_PAT: ${{ secrets.deploy_docs }}
+        GITHUB_PAT: ${{ secrets.TEST }}
 
 
 # docs as a version does not exist.  Need to trigger deploy when tox docs is ran.  Not sure how.
