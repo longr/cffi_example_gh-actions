@@ -33,16 +33,23 @@ jobs:
         run: "python -m tox"
 
       - name: "Convert coverage"
-        run: |
-          set -xe
-          python -m coverage combine
-          python -m coverage xml
-        if: "contains(env.USING_COVERAGE, matrix.python-version)"
+        run: "python -m coverage xml"
       - name: "Upload coverage to Codecov"
-        if: "contains(env.USING_COVERAGE, matrix.python-version)"
         uses: "codecov/codecov-action@v1"
         with:
           fail_ci_if_error: true
+
+#      - name: "Convert coverage"
+#        run: |
+#          set -xe
+#          python -m coverage combine
+#          python -m coverage xml
+#        if: "contains(env.USING_COVERAGE, matrix.python-version)"
+#      - name: "Upload coverage to Codecov"
+#        if: "contains(env.USING_COVERAGE, #matrix.python-version)"
+#        uses: "codecov/codecov-action@v1"
+#        with:
+#          fail_ci_if_error: true
 
   docs:
     runs-on: ubuntu-latest
