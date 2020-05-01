@@ -48,39 +48,3 @@ jobs:
           build_dir: docs/_build/html/
         env:
           GITHUB_PAT: ${{ secrets.TEST }}
-
-  docs:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        python-version: ["3.7"]
-        env:
-          - TOXENV: docs
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v1
-      with:
-        python-version: ${{ matrix.python-version}}
-    - name: Build and Deploy
-      run: |
-        python -VV
-        python -m site
-        python -m pip install --upgrade pip setuptools wheel
-        python -m pip install --upgrade codecov virtualenv tox tox-gh-actions
-
-    - name: "Run tox targets for docs"
-      env: ${{ matrix.env }}
-      run: "python -m tox"
-
-    - name: Deploy
-      uses: crazy-max/ghaction-github-pages@v1
-      with:
-        keep_history: true
-        target_branch: gh-pages
-        build_dir: docs/_build/html/
-      env:
-        GITHUB_PAT: ${{ secrets.TEST }}
-
-
-# docs as a version does not exist.  Need to trigger deploy when tox docs is ran.  Not sure how.
