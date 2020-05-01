@@ -6,6 +6,8 @@
 Welcome to fibonacci's documentation!
 =====================================
 
+New build!
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
