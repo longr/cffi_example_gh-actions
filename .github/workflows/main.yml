@@ -8,7 +8,11 @@ on:
 jobs:
   tests:
     name: "Python ${{ matrix.python-version }}"
-    runs-on: "ubuntu-latest"
+    strategy:
+      matrix:
+        os:
+	- ubuntu-latest
+    runs-on: ${{ matrix.os }}
     env:
       DEPLOY_DOCS: '3.7'
 
