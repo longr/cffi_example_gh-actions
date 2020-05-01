@@ -9,7 +9,9 @@ jobs:
   tests:
     name: "Python ${{ matrix.python-version }}"
     runs-on: "ubuntu-latest"
-
+    env:
+      USING_COVERAGE: '3.6,3.8'
+      
     strategy:
       matrix:
         python-version: ["3.6", "3.7", "3.8", "pypy3"]
@@ -31,8 +33,13 @@ jobs:
         run: "python -m tox"
 
       - name: "Convert coverage"
-        run: "python -m coverage xml"
+        run: |
+	  set -xe
+	  python -m coverage combine
+	  python -m coverage xml
+	if: "contains(env.USING_COVERAGE, matrix.python-version)
       - name: "Upload coverage to Codecov"
+        if: "contains(env.USING_COVERAGE, matrix.python-version)
         uses: "codecov/codecov-action@v1"
         with:
           fail_ci_if_error: true
