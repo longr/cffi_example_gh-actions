@@ -10,15 +10,15 @@ jobs:
     name: "Python ${{ matrix.python-version }}"
     strategy:
       matrix:
-        os:
-        - ubuntu-latest
+        os: ["ubuntu-latest"]
+        python-version: ["2.7", "3.6", "3.7", "3.8", "pypy3"]
     runs-on: ${{ matrix.os }}
     env:
       DEPLOY_DOCS: '3.7'
 
     strategy:
       matrix:
-        python-version: ["2.7", "3.6", "3.7", "3.8", "pypy3"]
+        
 
     steps:
       - uses: "actions/checkout@v2"
