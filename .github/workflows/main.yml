@@ -16,10 +16,6 @@ jobs:
     env:
       DEPLOY_DOCS: '3.7'
 
-    strategy:
-      matrix:
-        
-
     steps:
       - uses: "actions/checkout@v2"
       - uses: "actions/setup-python@v1"
