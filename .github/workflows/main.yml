@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         os:
-	- ubuntu-latest
+        - ubuntu-latest
     runs-on: ${{ matrix.os }}
     env:
       DEPLOY_DOCS: '3.7'
