@@ -40,7 +40,7 @@ jobs:
           fail_ci_if_error: true
 
       - name: Deploy
-        if: "contains("ubuntu-latest", matrix.os) && contains(env.DEPLOY_DOCS, matrix.python-version)"
+        if: "contains('ubuntu-latest', matrix.os) && contains(env.DEPLOY_DOCS, matrix.python-version)"
         uses: crazy-max/ghaction-github-pages@v1
         with:
           keep_history: true
