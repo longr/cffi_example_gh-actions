@@ -34,10 +34,10 @@ jobs:
 
       - name: "Convert coverage"
         run: |
-	  set -xe
-	  python -m coverage combine
-	  python -m coverage xml
-	if: "contains(env.USING_COVERAGE, matrix.python-version)
+          set -xe
+          python -m coverage combine
+          python -m coverage xml
+        if: "contains(env.USING_COVERAGE, matrix.python-version)
       - name: "Upload coverage to Codecov"
         if: "contains(env.USING_COVERAGE, matrix.python-version)
         uses: "codecov/codecov-action@v1"
